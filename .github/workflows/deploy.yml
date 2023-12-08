@@ -16,6 +16,9 @@ jobs:
     name: Docker Tests
     runs-on: ubuntu-latest
 
+    container:
+      image: jungsoft/deployer-cli
+
     # Run a local registry to push to
     services:
       registry:
@@ -55,11 +58,7 @@ jobs:
             --env INPUT_WHO_TO_GREET="${{ env.INPUT_WHO_TO_GREET }}" \
             --rm ${{ env.TEST_TAG }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    container:
-      image: jungsoft/deployer-cli
-    steps:
-      - name: Run Commands
+      - name: Run Deployer Commands
+        id: deployer
         run: |
           deployer up --file docker-compose.github.yml
