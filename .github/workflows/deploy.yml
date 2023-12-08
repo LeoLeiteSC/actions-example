@@ -39,14 +39,6 @@ jobs:
         id: build
         uses: docker/build-push-action@v5
 
-      - name: Run the Container
-        id: run
-        env:
-          INPUT_WHO_TO_GREET: Mona Lisa Octocat
-        run: |
-          docker run \
-            --env INPUT_WHO_TO_GREET="${{ env.INPUT_WHO_TO_GREET }}"
-
       - name: Run Deployer Commands
         id: deployer
         run: |
