@@ -26,9 +26,6 @@ jobs:
         ports:
           - 5001:5000
 
-    env:
-      TEST_TAG: localhost:5001/actions/hello-world-docer-action:latest
-
     steps:
       - name: Checkout
         id: checkout
@@ -41,10 +38,6 @@ jobs:
       - name: Build the Container
         id: build
         uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ env.TEST_TAG }}
 
       - name: Run the Container
         id: run
@@ -52,8 +45,7 @@ jobs:
           INPUT_WHO_TO_GREET: Mona Lisa Octocat
         run: |
           docker run \
-            --env INPUT_WHO_TO_GREET="${{ env.INPUT_WHO_TO_GREET }}" \
-            --rm ${{ env.TEST_TAG }}
+            --env INPUT_WHO_TO_GREET="${{ env.INPUT_WHO_TO_GREET }}"
 
       - name: Run Deployer Commands
         id: deployer
