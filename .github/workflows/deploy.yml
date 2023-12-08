@@ -13,11 +13,9 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     container:
       image: jungsoft/deployer-cli
-
     steps:
       - name: Run Commands
         run: |
-              deployer up --file docker-compose.github.yml
+          deployer up --file docker-compose.github.yml
