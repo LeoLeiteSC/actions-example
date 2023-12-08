@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: read
+  statuses: write
+
+jobs:
+  deploy:
+    name: Deploy
+    steps:
+      - id: deployer
+        uses: jungsoft/deployer-cli
+        script:
+          - deployer up --file docker-compose.github.yml
