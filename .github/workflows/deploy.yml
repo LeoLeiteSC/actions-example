@@ -12,10 +12,12 @@ permissions:
   statuses: write
 
 jobs:
-  deploy:
-    name: Deploy
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: jungsoft/deployer-cli
+
     steps:
-      - id: deployer
-        uses: jungsoft/deployer-cli
-        script:
-          - deployer up --file docker-compose.github.yml
+      name: Run Commands
+      run: |
+              deployer up --file docker-compose.github.yml
