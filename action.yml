@@ -19,3 +19,8 @@ runs:
   image: Dockerfile
   env:
     INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+deploy:
+  image: jungsoft/deployer-cli
+  script:
+    - deployer up --file docker-compose.github.yml

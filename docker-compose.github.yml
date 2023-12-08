@@ -1,0 +1,16 @@
+version: '3'
+
+networks:
+  external:
+    external: true
+  internal:
+    external: false
+    driver: overlay
+
+services:
+  app:
+    image: "${DOCKER_IMAGE}"
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=external
+      - traefik.port=4000
