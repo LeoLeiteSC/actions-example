@@ -18,6 +18,6 @@ jobs:
       image: jungsoft/deployer-cli
 
     steps:
-      name: Run Commands
-      run: |
+      - name: Run Commands
+        run: |
               deployer up --file docker-compose.github.yml
