@@ -42,4 +42,4 @@ jobs:
       - name: Run Deployer Commands
         id: deployer
         run: |
-          deployer up --file docker-compose.github.yml
+           docker run -v ${{ github.workspace }}:/workspace -w /workspace jungsoft/deployer-cli deployer up --file docker-compose.gitlab.yml
